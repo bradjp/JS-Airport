@@ -1,7 +1,12 @@
 
 'use strict';
 
-function Airport(){}
+function Airport(){
+    this._hangar = [];
+}
 Airport.prototype.planes = function(){
-    return []
+    return this._hangar
+}
+Airport.prototype.landingPermitted = function(plane){
+  this._hangar.push(plane);
 }

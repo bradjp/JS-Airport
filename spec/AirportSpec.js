@@ -14,4 +14,9 @@ describe('Airport', function(){
     airport.landingPermitted(plane);
     expect(airport.planes()).toEqual([plane]);
   });
+  it('can sanction takeoff', function(){
+    airport.landingPermitted(plane);
+    airport.takeoffPermitted(plane);
+    expect(airport.planes()).toEqual([]);
+  });
 });

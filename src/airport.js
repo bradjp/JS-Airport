@@ -1,21 +1,24 @@
-
 'use strict';
 
-function Airport(){
+function Airport(weather){
+  this._weather = typeof weather !== 'undefined' ? weather : new Weather();
   this._hangar = [];
 }
+
 Airport.prototype.planes = function(){
-  return this._hangar
-}
-Airport.prototype.landingPermitted = function(plane){
-  this._hangar.push(plane);
-}
-Airport.prototype.takeoffPermitted = function(plane){
-  if (this.isStormy()) {
-    throw new Error('Sorry, takeoff not permitted during storm')
+  return this._hangar;
+};
+
+Airport.prototype.landingPermitted = function(plane) {
+  if(this._weather.isStormy()) {
+    throw new Error('Sorry, landing not permitted during storm');
   }
-  this._hangar = []
-}
-Airport.prototype.isStormy = function(){
-  return false
-}
+  this._hangar.push(plane);
+};
+
+Airport.prototype.takeoffPermitted = function(plane) {
+  if(this._weather.isStormy()) {
+    throw new Error('Sorry, takeoff not permitted during storm');
+  }
+  this._hangar = [];
+};

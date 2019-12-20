@@ -23,7 +23,7 @@ describe('Airport', function(){
     expect(airport.isStormy()).toBeFalsy();
   });
   describe('stormy conditions',function(){
-    it('planes are not permitted to takeoff', function(){
+    it('prevents takeoff', function(){
       spyOn(airport,'isStormy').and.returnValue(true);
       expect(function(){ airport.takeoffPermitted(plane); }).toThrowError('Sorry, takeoff not permitted during storm');
     });

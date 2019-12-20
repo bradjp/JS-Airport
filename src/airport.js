@@ -11,5 +11,11 @@ Airport.prototype.landingPermitted = function(plane){
   this._hangar.push(plane);
 }
 Airport.prototype.takeoffPermitted = function(plane){
-    this._hangar = []
+  if (this.isStormy()) {
+    throw new Error('Sorry, takeoff not permitted during storm')
+  }
+  this._hangar = []
+}
+Airport.prototype.isStormy = function(){
+  return false
 }

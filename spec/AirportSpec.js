@@ -19,4 +19,13 @@ describe('Airport', function(){
     airport.takeoffPermitted(plane);
     expect(airport.planes()).toEqual([]);
   });
+  it('can check if conditions are stormy', function(){
+    expect(airport.isStormy()).toBeFalsy();
+  });
+  describe('stormy conditions',function(){
+    it('planes are not permitted to takeoff', function(){
+      spyOn(airport,'isStormy').and.returnValue(true);
+      expect(function(){ airport.takeoffPermitted(plane); }).toThrowError('Sorry, takeoff not permitted during storm');
+    });
+  });
 });
